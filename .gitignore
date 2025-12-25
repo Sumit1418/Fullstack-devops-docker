@@ -1,0 +1,19 @@
+# Node
+node_modules/
+
+# React build
+build/
+dist/
+
+# Java
+target/
+*.jar
+
+# Environment variables
+.env
+
+# Docker
+*.log
+
+# OS
+.DS_Store
