@@ -1,12 +1,11 @@
-//Contact us page with form (name, email, message) and submit button
 import { useState } from 'react';
 import API from './api';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: ''
+        Name: '',
+        Email: '',
+        Message: ''
     });
     const [submitted, setSubmitted] = useState(false);
 
@@ -33,8 +32,8 @@ const Contact = () => {
                     <label>Name:</label><br />
                     <input 
                         type="text" 
-                        name="name" 
-                        value={formData.name} 
+                        name="Name" 
+                        value={formData.Name} 
                         onChange={handleChange} 
                         required 
                     />
@@ -43,8 +42,8 @@ const Contact = () => {
                     <label>Email:</label><br />
                     <input 
                         type="email" 
-                        name="email"
-                        value={formData.email} 
+                        name="Email"
+                        value={formData.Email} 
                         onChange={handleChange} 
                         required 
                     />
@@ -52,8 +51,8 @@ const Contact = () => {
                 <div>
                     <label>Message:</label><br />
                     <textarea 
-                        name="message" 
-                        value={formData.message} 
+                        name="Message" 
+                        value={formData.Message} 
                         onChange={handleChange} 
                         required 
                     />
