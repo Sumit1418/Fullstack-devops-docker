@@ -1,5 +1,5 @@
 //Contact us page with form (name, email, message) and submit button
-import React, { useState } from 'react';
+import { useState } from 'react';
 import API from './api';
 
 const Contact = () => {
