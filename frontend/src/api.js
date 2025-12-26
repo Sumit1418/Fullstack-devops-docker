@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: "http://backend_service:8080",
+    baseURL: '/api',
 });
 
 export default API;
