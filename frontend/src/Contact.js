@@ -12,13 +12,15 @@ const Contact = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
             const res = await API.post('/contact', null, {
                 params: formData,
             });
             alert(res.data);
-        } catch (error) {
+        }
+        catch (error) {
             console.error("Contact form submission failed:");
         }
     }
