@@ -27,7 +27,7 @@ services:
         condition: service_healthy
 
   backend:
-    build:  ./backend
+    image: ${DOCKERHUB_USERNAME}/fullstack-backend:latest
     container_name: backend_service
     restart: always
     environment:
@@ -41,7 +41,7 @@ services:
         condition: service_healthy
 
   frontend:
-    build: ./frontend
+    image: ${DOCKERHUB_USERNAME}/fullstack-frontend:latest
     container_name: frontend_service
     restart: always
     ports:
