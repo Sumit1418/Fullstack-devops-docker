@@ -7,7 +7,6 @@ const Contact = () => {
         Email: '',
         Message: ''
     });
-    const [submitted, setSubmitted] = useState(false);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -57,7 +56,7 @@ const Contact = () => {
                         required 
                     />
                 </div>
-                <button onClick={handleSubmit} type="submit">Submit</button>
+                <button onClick={handleSubmit}>Submit</button>
             </form>
         </div>
     );
