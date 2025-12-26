@@ -9,6 +9,8 @@ function App() {
       <Register />
       <hr />
       <Login />
+      <hr />
+      <Contact />
     </div>
   );
 }
