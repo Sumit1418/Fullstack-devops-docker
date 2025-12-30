@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import API from './api';
+import API from '../api';
 
 function Register() {
     const [username, setUser] = useState({
@@ -23,7 +23,7 @@ function Register() {
     }
     
     return (
-        <div>
+        <div className="page">
             <h2>Register</h2>
             <input type="text" name="Username" placeholder="Username" onChange={handleChange} /><br />
             <input type="password" name="Password" placeholder="Password" onChange={handleChange} /><br />

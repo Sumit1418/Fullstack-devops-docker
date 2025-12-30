@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import API from './api';
+import API from '../api';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -26,7 +26,7 @@ const Contact = () => {
     }
     
     return (
-        <div className="contact-page">
+        <div className="page">
             <h1>Contact Us</h1>
             <form onSubmit={handleSubmit}>
                 <div>
