@@ -8,7 +8,7 @@ on:
 
 jobs:
   backend-build:
-    name: Build Backend (Spring Boot)
+    name: Build and Push Backend Image(Spring Boot)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -32,8 +32,8 @@ jobs:
           context: ./backend
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/backend:${{ github.sha }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/backend:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/fullstack-backend:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/fullstack-backend:latest
 
   frontend-build:
     name: Build & Push Frontend Image (React)
@@ -51,8 +51,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          node-version: '24'
 
       - name: Build Frontend and push Docker image
         uses: docker/build-push-action@v5
@@ -60,6 +59,6 @@ jobs:
           context: ./frontend
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/frontend:${{ github.sha }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/frontend:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/fullstack-frontend:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/fullstack-frontend:latest
 
