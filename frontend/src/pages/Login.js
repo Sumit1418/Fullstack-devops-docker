@@ -17,13 +17,13 @@ function Login() {
         setData({ ...data, [e.target.name]: e.target.value });
     }
 
-    const login = async () => {
+    const login = async (e) => {
+        e.preventDefault();
         try {
-            const res = await API.post('/login', null, {
-                params: data,
-            });
+            const res = await API.post('/login', data );
             localStorage.setItem('token', res.data.token);
-            alert("Login successful!");
+            localStorage.setItem('username', res.data.username);
+            alert(res.data.message);
             navigate('/profile', { replace: true });
             
         } catch (error) {
@@ -35,8 +35,8 @@ function Login() {
         <div className="page">
             <h2>Login Updated</h2>
             <form>
-                <input type="text" name="Username" placeholder="Username" onChange={handleChange} /><br />
-                <input type="password" name="Password" placeholder="Password" onChange={handleChange} /><br />
+                <input type="text" name="username" placeholder="Username" onChange={handleChange} /><br />
+                <input type="password" name="password" placeholder="Password" onChange={handleChange} /><br />
                 <button onClick={login}>Login</button>
             </form>
         </div>

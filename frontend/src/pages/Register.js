@@ -1,22 +1,23 @@
 import {useState} from 'react';
 import API from '../api';
+import { Navigate } from 'react-router-dom';
 
 function Register() {
-    const [username, setUser] = useState({
-        Username: "",
-        Password: "",
-        Email: "",
+    const [formData, setUser] = useState({
+        username: "",
+        password: "",
+        email: "",
     });
     const handleChange = (e) => {
-        setUser({ ...username, [e.target.name]: e.target.value });
+        setUser({ ...formData, [e.target.name]: e.target.value });
     }
 
     const register = async () => {
+
         try {
-            const res = await API.post('/register', null, {
-                params: username,
-            });
+            const res = await API.post('/register', formData);
             alert(res.data);
+            Navigate('/login');
         } catch (error) {
             console.error("Registration failed:");
         }
@@ -25,10 +26,12 @@ function Register() {
     return (
         <div className="page">
             <h2>Register</h2>
-            <input type="text" name="Username" placeholder="Username" onChange={handleChange} /><br />
-            <input type="password" name="Password" placeholder="Password" onChange={handleChange} /><br />
-            <input type="email" name="Email" placeholder="Email" onChange={handleChange} /><br />
+            <form>
+            <input type="text" name="username" placeholder="Username" onChange={handleChange} /><br />
+            <input type="password" name="password" placeholder="Password" onChange={handleChange} /><br />
+            <input type="email" name="email" placeholder="Email" onChange={handleChange} /><br />
             <button onClick={register}>Register</button>
+        </form>
         </div>
     );
 }
