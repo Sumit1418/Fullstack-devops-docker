@@ -24,7 +24,7 @@ function Login() {
             });
             localStorage.setItem('token', res.data.token);
             alert("Login successful!");
-            navigate('/profile');
+            navigate('/profile', { replace: true });
             
         } catch (error) {
             console.error("Login failed:");
