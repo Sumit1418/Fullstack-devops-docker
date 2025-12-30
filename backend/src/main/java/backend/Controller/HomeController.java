@@ -38,7 +38,7 @@ public class HomeController {
     public String Login(@RequestParam String Username, @RequestParam String Password) {
         User user = userRepository.findByUsernameAndPassword(Username, Password);
         if (user != null) {
-            return "Login successful";
+            return "{\"token\":\"dummy-token-for-" + Username + "\"}";
         } else {
             return "Invalid credentials";
         }
