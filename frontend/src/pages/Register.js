@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import API from '../api';
 import { Navigate } from 'react-router-dom';
 
@@ -22,16 +22,16 @@ function Register() {
             console.error("Registration failed:");
         }
     }
-    
+
     return (
         <div className="page">
             <h2>Register</h2>
             <form>
-            <input type="text" name="username" placeholder="Username" onChange={handleChange} /><br />
-            <input type="password" name="password" placeholder="Password" onChange={handleChange} /><br />
-            <input type="email" name="email" placeholder="Email" onChange={handleChange} /><br />
-            <button onClick={register}>Register</button>
-        </form>
+                <input type="text" name="username" placeholder="Username" onChange={handleChange} /><br />
+                <input type="password" name="password" placeholder="Password" onChange={handleChange} /><br />
+                <input type="email" name="email" placeholder="Email" onChange={handleChange} /><br />
+                <button onClick={register}>Register</button>
+            </form>
         </div>
     );
 }
