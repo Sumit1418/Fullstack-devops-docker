@@ -21,8 +21,8 @@ function Navbar() {
                     </>
                 ) : (
                     <>
-                        <Link to="/profile">Profile</Link>
-                        <Link to="/Contact">Contact</Link>
+                        <Link to="/profile">Profile </Link>
+                        <Link to="/Contact">Contact </Link>
                         <button onClick={logout} className='logout-btn'>Logout</button>
                     </>
                 )}  
