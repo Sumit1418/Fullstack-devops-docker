@@ -25,7 +25,7 @@ function Login() {
     
     return (
         <div>
-            <h2>Login</h2>
+            <h2>Login Updated</h2>
             <input type="text" name="Username" placeholder="Username" onChange={handleChange} /><br />
             <input type="password" name="Password" placeholder="Password" onChange={handleChange} /><br />
             <button onClick={login}>Login</button>
