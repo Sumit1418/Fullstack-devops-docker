@@ -3,9 +3,9 @@ import API from '../api';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
-        Name: '',
-        Email: '',
-        Message: ''
+        name: '',
+        email: '',
+        message: ''
     });
 
     const handleChange = (e) => {
@@ -15,9 +15,7 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await API.post('/contact', null, {
-                params: formData,
-            });
+            const res = await API.post('/contact', formData);
             alert(res.data);
         }
         catch (error) {
