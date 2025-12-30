@@ -3,12 +3,16 @@ import backend.Entity.User;
 import backend.Repository.UserRepository;
 import backend.Repository.ContactRepository;
 import backend.Entity.Contact;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -26,8 +30,6 @@ public class HomeController {
         return ("Backend is running");
     }
 
-    //register, login, profile, contact
-
     @PostMapping("/register")
     public String Register(@RequestParam String Username, @RequestParam String Password, @RequestParam String Email) {
         userRepository.save(new User(Username, Password, Email));
@@ -35,13 +37,15 @@ public class HomeController {
     }
 
     @PostMapping("/login")
-    public String Login(@RequestParam String Username, @RequestParam String Password) {
-        User user = userRepository.findByUsernameAndPassword(Username, Password);
-        if (user != null) {
-            return "{\"token\":\"dummy-token-for-" + Username + "\"}";
-        } else {
-            return "Invalid credentials";
-        }
+    public Object Login(@RequestBody User user) {
+        User foundUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+        
+        if (foundUser != null) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Login successful");
+            response.put("token", "dummy-jwt-token");
+            return response;
+        } throw new RuntimeException("Invalid credentials");
     }
 
     @PostMapping("/profile")
