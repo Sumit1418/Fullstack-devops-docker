@@ -9,7 +9,7 @@ function Register() {
         email: "",
     });
     const handleChange = (e) => {
-        setUser({ ...username, [e.target.name]: e.target.value });
+        setUser({ ...formData, [e.target.name]: e.target.value });
     }
 
     const register = async () => {
