@@ -31,8 +31,8 @@ public class HomeController {
     }
 
     @PostMapping("/register")
-    public String Register(@RequestParam String Username, @RequestParam String Password, @RequestParam String Email) {
-        userRepository.save(new User(Username, Password, Email));
+    public String Register(@RequestBody User user) {
+        userRepository.save(user);
         return "User registered successfully";
     }
 
@@ -44,25 +44,23 @@ public class HomeController {
             Map<String, Object> response = new HashMap<>();
             response.put("message", "Login successful");
             response.put("token", "dummy-jwt-token");
+            response.put("username", foundUser.getUsername());
             return response;
         } throw new RuntimeException("Invalid credentials");
     }
 
-    @PostMapping("/profile")
-    public User Profile(@RequestParam Long Id) {
-        User user = userRepository.findById(Id).orElse(null);
+    @GetMapping("/profile")
+    public User Profile(@RequestParam String username) {
+        User user = userRepository.findByUsername(username);
         if (user != null) {
             return user;
-        } else {
-            return null;
-        }
+        } throw new RuntimeException("User not found");
     }
-    
 
     @PostMapping("/contact")
-    public String Contact(@RequestParam String Name, @RequestParam String Email, @RequestParam String Message) {
-        contactRepository.save(new Contact(Name, Email, Message));
-        return "Contact form submitted successfully";
+    public String Contact(@RequestBody Contact contact) {
+        contactRepository.save(contact);
+        return "Contact information saved successfully";
     }
     
 }

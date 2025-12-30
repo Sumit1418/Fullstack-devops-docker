@@ -3,14 +3,14 @@ import API from '../api';
 
 function Profile() {
     const [profileData, setProfileData] = useState({
-        Username: '',
-        Email: '',
-        FullName: '',
+        username: '',
+        email: '',
+        fullName: '',
     });
 
     const fetchProfile = async () => {
         try {
-            const res = await API.get('/profile');
+            const res = await API.get('/profile', { params: { username: localStorage.getItem('username') } });
             setProfileData(res.data);
         } catch (error) {
             console.error("Failed to fetch profile data:");
@@ -22,9 +22,9 @@ function Profile() {
             <h2>Profile Page</h2>
             <button onClick={fetchProfile}>Load Profile</button>
             <div>
-                <p><strong>Username:</strong> {profileData.Username}</p>
-                <p><strong>Email:</strong> {profileData.Email}</p>
-                <p><strong>Full Name:</strong> {profileData.FullName}</p>
+                <p><strong>Username:</strong> {profileData.username}</p>
+                <p><strong>Email:</strong> {profileData.email}</p>
+                <p><strong>Full Name:</strong> {profileData.fullName}</p>
             </div>
         </div>
     );
