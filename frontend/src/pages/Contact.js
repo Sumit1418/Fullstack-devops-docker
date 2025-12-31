@@ -17,6 +17,7 @@ const Contact = () => {
         try {
             const res = await API.post('/contact', formData);
             alert(res.data);
+            setFormData({ name: '', email: '', message: '' });
         }
         catch (error) {
             console.error("Contact form submission failed:");
@@ -26,36 +27,10 @@ const Contact = () => {
     return (
         <div className="page">
             <h1>Contact Us</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Name:</label><br />
-                    <input 
-                        type="text" 
-                        name="Name" 
-                        value={formData.Name} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div>
-                    <label>Email:</label><br />
-                    <input 
-                        type="email" 
-                        name="Email"
-                        value={formData.Email} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
-                <div>
-                    <label>Message:</label><br />
-                    <textarea 
-                        name="Message" 
-                        value={formData.Message} 
-                        onChange={handleChange} 
-                        required 
-                    />
-                </div>
+            <form>
+                <input type="text" name="name" placeholder="Your Name" onChange={handleChange} /><br />
+                <input type="email" name="email" placeholder="Your Email" onChange={handleChange} /><br />
+                <textarea name="message" placeholder="Your Message" onChange={handleChange}></textarea><br />
                 <button onClick={handleSubmit}>Submit</button>
             </form>
         </div>
